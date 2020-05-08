@@ -1,0 +1,1 @@
+/usr/bin/c++   -fopenmp -Wall -Werror -O3 -DPALISADE_VERSION=     CMakeFiles/primer2.dir/Example2.cpp.o  -o primer2  -L/usr/local/lib -Wl,-rpath,/usr/local/lib -lPALISADEcore -lPALISADEpke -fopenmp 

@@ -1,0 +1,4 @@
+/home/abhay/Primer/build/CMakeFiles/edit_cache.dir
+/home/abhay/Primer/build/CMakeFiles/rebuild_cache.dir
+/home/abhay/Primer/build/CMakeFiles/primer.dir
+/home/abhay/Primer/build/CMakeFiles/primer2.dir

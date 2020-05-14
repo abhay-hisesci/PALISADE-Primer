@@ -86,7 +86,7 @@ PALISADE Primer for CS485
 #### If both checks have passed, this means that we have successfully encrypted the inputted phrase. This process is repeated for each phrase that is inputted.
 
 # Distribution of Primer Programs
-#### The primer programs can be found on GitHud at the following link: https://github.com/abhay-hisesci/PALISADE-Primer
+#### The primer programs can be found on GitHub at the following link: https://github.com/abhay-hisesci/PALISADE-Primer
 #### Program #1’s source code file is Examples.cpp. Program #2’s source code file is  Example2.cpp.  Users should follow the steps to build and compile the programs. 
 #### Step 1. Build and install PALISADE using “make install”. This will copy the PALISADE library files and header files to the directory chosen for installation.
 #### Step 2.Create the folder for the project on the system. 

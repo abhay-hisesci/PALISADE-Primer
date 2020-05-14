@@ -1,7 +1,7 @@
 # PALISADE-Primer
 PALISADE Primer for CS485
 
-# Primer Tutorial
+# Primer Guide
 
 #### This tutorial will guide you through development of your very own applications which can take advantage of homomorphic encryption. We will demonstrate the ability to encrypt and decrypt given phrases. These phrases can be simple such as a word or it can be operations such as multiplication or addition. This guide assumes you have gained an understanding of the basic Palisade Library, build your own projects using cmake, and how to implement some basic programs. If you need some assistance, please refer to the Palisade Documentation for further information. Follow these links for more information: 
         
@@ -57,9 +57,53 @@ PALISADE Primer for CS485
         return 0;
 
 # Primer Program #2: Input Phrase Encryption and Decryption
+#### This program is very similar to the previous primer we went over. This program is designed to take input from the user such as a phrase and store it in a variable called phrase. The program then proceed to call the method MakeStringPlainText(string) to convert the phrase into plaintext:
+        Plaintext plaintext1 = cryptoContext->MakeStringPlaintext(phrase1);
+        Plaintext plaintext2 = cryptoContext->MakeStringPlaintext(phrase2);
+        Plaintext plaintext3 = cryptoContext->MakeStringPlaintext(phrase3);
 
+#### This is then followed by calling the Encrypt method which takes our generated key and the phrase that would like to be encrypted.
+        auto ciphertext1 = cryptoContext->Encrypt(keyPair.publicKey, plaintext1);
+        auto ciphertext2 = cryptoContext->Encrypt(keyPair.publicKey, plaintext2);
+        auto ciphertext3 = cryptoContext->Encrypt(keyPair.publicKey, plaintext3);
+
+#### We have now successfully encrypted the phrases that were inputted. Now the program calls the Decrypt method which takes in our generated key, encrypted text, and the reference of the variable where we are storing the decrypted text.
+        DecryptResult result = cryptoContext->Decrypt(keyPair.secretKey,ciphertext1,&plaintextDecrypted1);
+
+#### Lastly, the program does 2 checks. First we see if the decryption was successful. If it is not then we let the user know.
+        if (!result.isValid) {
+            cout << "Decryption failed" << endl;
+            return 1;
+        }
+
+#### Secondly, we check if the decrypted plaintext is the same as what we started with. If it’s not the same we display the results of the decrypted text to the user for further inspection.
+        if( plaintext1 != plaintextDecrypted1 ) {
+               cout << "First decrypted plaintext does not match original plaintext!" << endl;
+               cout << "Original Plaintext: " << plaintext1 << endl;
+               cout << "Decrypted Plaintext: " << plaintextDecrypted1 << endl;
+               return 1;
+           }
+#### If both checks have passed, this means that we have successfully encrypted the inputted phrase. This process is repeated for each phrase that is inputted.
 
 # Distribution of Primer Programs
+#### The primer programs can be found on GitHud at the following link: https://github.com/abhay-hisesci/PALISADE-Primer
+#### Program #1’s source code file is Examples.cpp. Program #2’s source code file is  Example2.cpp.  Users should follow the steps to build and compile the programs. 
+#### Step 1. Build and install PALISADE using “make install”. This will copy the PALISADE library files and header files to the directory chosen for installation.
+#### Step 2.Create the folder for the project on the system. 
+#### Step 3.Copy CMakeLists. Use.txt form the root directory of the git repo to the folder for the project. 
+#### Step 4.Rename CMakeLists.User.txt to CMakeLists.txt. 
+#### Step 5.Update CMakeLists.txt to specify the name of the executable and the source code files. For example, include the following line
+        add_executable( fhe-demo demo-simple-Examples.cpp )
+        If using MinGW/Windows(skip this step for other platforms), copy PreLoad.cmke 
+        Form the root directory of the git repo to the folder for the project. 
+#### Step 6. We create the build directory and cd to it
+        mkdir build
+        cd build
+#### Step 7. Run
+        cmake -DPALISADE_DIR=`<path_to_palisade>` ..
+#### Step 8. Run “make” to build the executable. 
+        After building the executable, if users are using the linux environment and want to run the compiled program then type the command: ./<your_program_name>. 
+#### The distribution of the primer guide is in a pdf available on the GitHub link.
 
  
 
